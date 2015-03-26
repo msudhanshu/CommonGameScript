@@ -16,7 +16,9 @@ public class ResourceImageDownloader : IImageDownloader
 	public void StartDownload(ImageRequest imageRequest, IImageDownloadListner listner) {
 		listner.SetLoading(true);
 		Texture2D texture ;
-		texture = Resources.LoadAssetAtPath<Texture2D>(imageRequest.ImageUrl);
+
+		//texture = Resources.LoadAssetAtPath<Texture2D>(imageRequest.ImageUrl);
+		texture = Resources.Load<Texture2D>(imageRequest.ImageUrl);
 		Debug.Log("Loading image from resource "+imageRequest.ImageUrl);
 
 

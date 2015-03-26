@@ -24,6 +24,7 @@ public class TargetManager : Manager<TargetManager> {
 
 	/* Implement this function */
 	override public void StartInit(){
+
 	}
 	
 	/* Implement this function */
@@ -51,7 +52,7 @@ public class TargetManager : Manager<TargetManager> {
 			if(allTargets.Count>0) {
 					activeTarget = allTargets[ Random.Range(0,allTargets.Count) ];
 					if(activeTarget.IsValidTarget()) {
-					targetName.text = activeTarget.ShownName();
+						targetName.text = activeTarget.ShownName();
 					Debug.Log("need to click/find= "+activeTarget.ShownName());
 				} else
 					activeTarget = null;

@@ -25,7 +25,7 @@ namespace Album3D {
 		}
 
 		public bool IsValidTarget() {
-			return screen.ImageName!=null;
+			return !(screen.ImageName==null || screen.ImageName.Equals(""));
 		}
 
 		virtual public void OnPointerClick (PointerEventData eventData){

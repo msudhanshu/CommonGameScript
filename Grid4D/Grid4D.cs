@@ -8,6 +8,8 @@ public class Grid4D : MonoBehaviour {
 	public Vector3 GridSize = new Vector3(5,5,5);
 	public GridBlock dummyTargetBlock;
 	public float speed = 1f;
+	public Material mat;
+	public GameObject screenPrefab;
 //	public int GridSizeY = 5;
 //	public int GridSizeZ = 5;
 	GridBlock[ , , ] gridArray;
@@ -76,13 +78,20 @@ public class Grid4D : MonoBehaviour {
 
 	//this should go somewhere else and should be a prefab.
 	private GridBlock CreateBlock(int x, int y, int z) {
-		GameObject bgo = GameObject.CreatePrimitive(PrimitiveType.Cube);
-		bgo.transform.position = new Vector3(x,y,z);
-		GridBlock b = bgo.AddComponent<GridBlock>();
-		bgo.AddComponent<Album3D.Screen>();
+		GameObject bgo;
+		GridBlock b;
+/*		bgo = GameObject.CreatePrimitive(PrimitiveType.Cube);
+		b = bgo.AddComponent<GridBlock>();
+		Album3D.Screen s = bgo.AddComponent<Album3D.Screen>();
+		s.SetMaterial(mat);
 	//	bgo.AddComponent<SpectrumBar>();
-		bgo.AddComponent<Target>();
-		return b;
+		bgo.AddComponent<Target>();*/
+
+		bgo = Pool.Instantiate(screenPrefab).gameObject;
+		bgo.transform.position = new Vector3(x,y,z);
+		b = bgo.GetComponent<GridBlock>();
+
+        return b;
 	}
 
 	public void RearrangeGrid() {

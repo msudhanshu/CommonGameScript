@@ -71,8 +71,9 @@ public sealed class MyInteractiveConsole : InteractiveConsole {
 	public void GetFbProfileInfo()
 	{
 		FbDebug.Log("Logged in. ID: " + FB.UserId);
-		// Reqest player info and profile picture
-		FB.API("/me?fields=id,name,friends.limit(100).fields(name,id,picture.type(large))", Facebook.HttpMethod.GET, APICallback);
+		Debug.Log("......../me?fields=id,name,friends.limit(10).fields(name,id)");
+		// Reqest player info and profile picture //,picture.type(large) //TODO TEMP MANJEET
+		FB.API("/me?fields=id,name,friends.limit(10).fields(name,id)", Facebook.HttpMethod.GET, APICallback);
 		FB.API(FBUtil.GetPictureURL("me", 1024, 1024), Facebook.HttpMethod.GET, MyPictureCallback);
 	}
 	
@@ -82,14 +83,15 @@ public sealed class MyInteractiveConsole : InteractiveConsole {
 		if (result.Error != null)
 		{
 			FbDebug.Error(result.Error);
-			// Let's just try again
-			FB.API("/me?fields=id,name,friends.limit(20).fields(name,id,picture)", Facebook.HttpMethod.GET, APICallback);
+			// Let's just try again/////picture
+			FB.API("/me?fields=id,name,friends.limit(5).fields(name,id)", Facebook.HttpMethod.GET, APICallback);
 			return;
 		}
 		
 		profile = FBUtil.DeserializeJSONProfile(result.Text);
 		GameStateManager.Username = profile["name"];
 		friends = FBUtil.DeserializeJSONFriends(result.Text);
+		Debug.Log("Name "+profile["name"]+",allfriend list="+result.Text);
 		OnFbLogin();
 	}
 	

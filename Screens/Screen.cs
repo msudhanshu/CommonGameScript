@@ -8,7 +8,7 @@ namespace Album3D {
 	public GameObject LoadingIcon;
 	public Texture screenMaterial;
 	public int screenMaterialIndex = 0;
-	public string ImageName;
+	public string ImageName = null;
 	public ScreenEffect screenEffect;
 
 	public int Priority =1;
