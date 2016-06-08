@@ -156,10 +156,10 @@ public class MyInteractiveConsoleOld : InteractiveConsole {
 	//	CallFBFeed();
 		FB.Feed(
 			toId: FeedToId,
-			link: Config.PLAY_STORE_URL,
-			linkName:  Config.FeedLinkName,
-			linkCaption: Config.FeedLinkCaption,
-			linkDescription:  Config.FeedLinkDescription,
+            link: CommonGameConfig.PLAY_STORE_URL,
+            linkName:  CommonGameConfig.FeedLinkName,
+            linkCaption: CommonGameConfig.FeedLinkCaption,
+            linkDescription:  CommonGameConfig.FeedLinkDescription,
 			//picture: Config.FBSHARE_PLAY_STORE_URL,
 			properties: FeedProperties,
 			callback: Callback

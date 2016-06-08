@@ -18,7 +18,7 @@ public class ResourceImageDownloader : IImageDownloader
 		Texture2D texture ;
 
 		//texture = Resources.LoadAssetAtPath<Texture2D>(imageRequest.ImageUrl);
-		texture = Resources.Load<Texture2D>(imageRequest.ImageUrl);
+		texture = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture2D>(imageRequest.ImageUrl);
 		Debug.Log("Loading image from resource "+imageRequest.ImageUrl);
 
 
@@ -31,6 +31,11 @@ public class ResourceImageDownloader : IImageDownloader
 		if(texture==null) {
 			Debug.Log("loading failed and try again");
 			texture = Resources.Load<Texture2D>(Path.GetFileNameWithoutExtension (imageRequest.ImageUrl));
+		}
+
+		if(texture==null) {
+			Debug.Log("loading failed and try again");
+			texture = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture2D>(imageRequest.ImageUrl);
 		}
 			//Resources.Load<Texture2D>(imageRequest.ImageUrl);// Resources.Load(url, typeof(Texture2D));
 		// Resources.Load<Texture2D>(url);

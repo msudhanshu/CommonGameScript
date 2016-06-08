@@ -24,7 +24,8 @@ public class ScreenManager : Manager<ScreenManager> {
 			//AddImageURL (@"/Users/manjeet/Desktop/");
 			if(fbManager==null)
 				fbManager = MyInteractiveConsole.instance;
-			MyInteractiveConsole.OnFbLogin+=AddFbFriendImageURL;
+			MyInteractiveConsole.OnFbLogin+=AddResourceImageURL;//AddFbFriendImageURL;
+			AddResourceImageURL();
 		}
 	
 	/* Implement this function */
@@ -107,15 +108,21 @@ public class ScreenManager : Manager<ScreenManager> {
 	}
 
 	//TODO : in case of resources .... dowload should be diffrent , not like www but resource.load()
-	public void AddResourceImageURL(int albumNo) {
-		string filePath ="Assets/Resources/Album3D/"+albumNo+"/" ;
+	/*	public void AddResourceImageURL() {
+			AddResourceImageURL(1);
+		}
+*/
+		public void AddResourceImageURL(int albumNo=1) {
+		string rootPath="Assets/Resources/";
+		string resRelativePath = "Album3D/"+albumNo+"/" ;
+		string filePath = rootPath+resRelativePath;
     	DirectoryInfo dir = new DirectoryInfo (filePath);
 		FileInfo[] info = dir.GetFiles ("*g");
 		Debug.Log (info.ToString ());
 		info.Select (f => f.FullName).ToArray ();
 		foreach (FileInfo f in info) { 
 			Debug.Log(f.FullName);
-			imageURLS.Enqueue( new ImageRequest(filePath + Path.GetFileName(f.FullName) ,ImageDownloadType.RESOURCE) );
+				imageURLS.Enqueue( new ImageRequest(filePath + Path.GetFileName(f.FullName) ,ImageDownloadType.RESOURCE) );
 		}
 	}
 
