@@ -15,11 +15,14 @@ public class ResourceImageDownloader : IImageDownloader
 {
 	public void StartDownload(ImageRequest imageRequest, IImageDownloadListner listner) {
 		listner.SetLoading(true);
-		Texture2D texture ;
+		Texture2D texture = null;
 
 		//texture = Resources.LoadAssetAtPath<Texture2D>(imageRequest.ImageUrl);
-		texture = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture2D>(imageRequest.ImageUrl);
-		Debug.Log("Loading image from resource "+imageRequest.ImageUrl);
+
+        #if UNITY_EDITOR
+        texture = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture2D>(imageRequest.ImageUrl);
+        #endif
+        Debug.Log("Loading image from resource "+imageRequest.ImageUrl);
 
 
 		//IN CASE OF LOAD() YOU HAVE TO PASS PATH UNDER RESOURCES FOLDER ONLY . WITH FILE NAME EXTENSION TOO
@@ -33,10 +36,12 @@ public class ResourceImageDownloader : IImageDownloader
 			texture = Resources.Load<Texture2D>(Path.GetFileNameWithoutExtension (imageRequest.ImageUrl));
 		}
 
+        #if UNITY_EDITOR
 		if(texture==null) {
 			Debug.Log("loading failed and try again");
 			texture = UnityEditor.AssetDatabase.LoadAssetAtPath<Texture2D>(imageRequest.ImageUrl);
 		}
+        #endif
 			//Resources.Load<Texture2D>(imageRequest.ImageUrl);// Resources.Load(url, typeof(Texture2D));
 		// Resources.Load<Texture2D>(url);
 		//string texture = "Assets/Resources/Textures/Turner.png";

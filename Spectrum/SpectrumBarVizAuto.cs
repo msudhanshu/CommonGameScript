@@ -22,8 +22,13 @@ public class SpectrumBarVizAuto : MonoBehaviour, ISpectrumVisualizer
     int barCount;
 
 	void Start() {
+        
 		StartViz();
 	}
+
+    void SetBarVizCamera() {
+        
+    }
 
 	public void StartViz() {
 		StartCoroutine("StartVizCoroutine");

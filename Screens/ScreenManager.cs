@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using System.IO;
 using System.Linq;
+using Facebook.Unity;
 
 namespace Album3D {
 
@@ -103,8 +104,10 @@ public class ScreenManager : Manager<ScreenManager> {
 			imageURLS.Enqueue(new ImageRequest(defaultUrl,ImageDownloadType.URL));
 			defaultUrl = @"http://www.elisha-cuthbert.com/hairstyles/elisha-cuthbert-hairstyle-6.jpg";
 			imageURLS.Enqueue(new ImageRequest(defaultUrl,ImageDownloadType.URL));
-			defaultUrl =@"https://graph.facebook.com/"  + FB.UserId +  @"/picture?type=large";
-			imageURLS.Enqueue(new ImageRequest(defaultUrl,ImageDownloadType.URL));
+			
+            //FBTODO
+            //defaultUrl =@"https://graph.facebook.com/"  + FB.UserId +  @"/picture?type=large";
+			//imageURLS.Enqueue(new ImageRequest(defaultUrl,ImageDownloadType.URL));
 	}
 
 	//TODO : in case of resources .... dowload should be diffrent , not like www but resource.load()
@@ -195,18 +198,21 @@ public class ScreenManager : Manager<ScreenManager> {
 	/// /////////
 	void LoadFbImageAPI (Screen screen, string url, ImageDownloadDelegate callback)
 	{
-		FB.API(url,Facebook.HttpMethod.GET,result =>
-		       {
-			if (result.Error != null)
-			{
-				FBUtil.LogError(result.Error);
-				return;
-			}
-			
-			var imageUrl = FBUtil.DeserializePictureURLString(result.Text);
-			StartCoroutine(CoroutineLoadFromUrl(screen,imageUrl,callback));
-		});
+
+            //FBTODO
+//		FB.API(url,Facebook.HttpMethod.GET,result =>
+//		       {
+//			if (result.Error != null)
+//			{
+//				FBUtil.LogError(result.Error);
+//				return;
+//			}
+//			
+//			var imageUrl = FBUtil.DeserializePictureURLString(result.Text);
+//			StartCoroutine(CoroutineLoadFromUrl(screen,imageUrl,callback));
+//		});
 	}
+
 	void LoadPictureURL (Screen screen, string url, ImageDownloadDelegate callback){
 			StartCoroutine(CoroutineLoadFromUrl(screen, url,callback));
 	}

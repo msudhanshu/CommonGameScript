@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Facebook.Unity;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -108,25 +109,26 @@ public class GameStateManager : MonoBehaviour
         {
             Destroy(t);
         }
-        FbDebug.Log("EndGame Instance.highScore = " + Instance.highScore + "\nInstance.score = " + Instance.score);
 
-
-        Instance.highScore = Instance.score;
-        FbDebug.Log("Player has new high score :" + Instance.score);
-        if (FB.IsLoggedIn)
-        {
-            var query = new Dictionary<string, string>();
-            query["score"] = Instance.score.ToString();
-            FB.API("/me/scores", Facebook.HttpMethod.POST, delegate(FBResult r) { FbDebug.Log("Result: " + r.Text); }, query);
-        }
-        
-        if (FB.IsLoggedIn)
-        {
-            var querySmash = new Dictionary<string, string>();
-            querySmash["profile"] = GameStateManager.FriendID;
-            FB.API ("/me/" + FB.AppId + ":smash", Facebook.HttpMethod.POST, 
-            delegate(FBResult r) { FbDebug.Log("Result: " + r.Text); }, querySmash);
-        }
+        //FBTODO
+//        FbDebug.Log("EndGame Instance.highScore = " + Instance.highScore + "\nInstance.score = " + Instance.score);
+//
+//        Instance.highScore = Instance.score;
+//        FbDebug.Log("Player has new high score :" + Instance.score);
+//        if (FB.IsLoggedIn)
+//        {
+//            var query = new Dictionary<string, string>();
+//            query["score"] = Instance.score.ToString();
+//            FB.API("/me/scores", Facebook.HttpMethod.POST, delegate(FBResult r) { FbDebug.Log("Result: " + r.Text); }, query);
+//        }
+//        
+//        if (FB.IsLoggedIn)
+//        {
+//            var querySmash = new Dictionary<string, string>();
+//            querySmash["profile"] = GameStateManager.FriendID;
+//            FB.API ("/me/" + FB.AppId + ":smash", Facebook.HttpMethod.POST, 
+//            delegate(FBResult r) { FbDebug.Log("Result: " + r.Text); }, querySmash);
+//        }
 
         Application.LoadLevel("MainMenu");
         Time.timeScale = 0.0f;

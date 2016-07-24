@@ -17,17 +17,19 @@ public class FBUtil : ScriptableObject
         return url;
     }
 
-    public static void FriendPictureCallback(FBResult result)
-    {
-        if (result.Error != null)
-        {
-            Debug.LogError(result.Error);
-            return;
-        }
 
-		//TODO : MANJEET
-       // GameStateManager.FriendTexture = result.Texture;
-    }
+    //FBTODO
+//    public static void FriendPictureCallback(FBResult result)
+//    {
+//        if (result.Error != null)
+//        {
+//            Debug.LogError(result.Error);
+//            return;
+//        }
+//
+//		//TODO : MANJEET
+//       // GameStateManager.FriendTexture = result.Texture;
+//    }
 
     public static Dictionary<string, string> RandomFriend(List<object> friends)
     {

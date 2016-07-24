@@ -6,6 +6,7 @@
 //
 using UnityEngine;
 using System.Collections;
+using Facebook.Unity;
 
 public class FbImageDownloader : IImageDownloader
 {
@@ -16,7 +17,8 @@ public class FbImageDownloader : IImageDownloader
 		listner.SetLoading(true);
 		if(FB.IsLoggedIn) {
 			Debug.Log("Downloading fb image : " + GetPictureURL(imageRequest));
-			FB.API(GetPictureURL(imageRequest), Facebook.HttpMethod.GET, FbPictureCallback);
+			//FBTODO
+            //FB.API(GetPictureURL(imageRequest), Facebook.HttpMethod.GET, FbPictureCallback);
 		}
 	}
 
@@ -34,17 +36,18 @@ public class FbImageDownloader : IImageDownloader
 		return url;
 	}
 
-
-	public void FbPictureCallback(FBResult result)
-	{
-		if (result.Error != null)
-		{
-			Debug.LogError(result.Error);
-			return;
-		}
-		listner.SetLoading(false);
-		listner.OnDownload(result.Texture);
-	}
-
+    //FBTODO
+    public void FbPictureCallback(){}
+//	public void FbPictureCallback(FBResult result)
+//	{
+//		if (result.Error != null)
+//		{
+//			Debug.LogError(result.Error);
+//			return;
+//		}
+//		listner.SetLoading(false);
+//		listner.OnDownload(result.Texture);
+//	}
+//
 }
 

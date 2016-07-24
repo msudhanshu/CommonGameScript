@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Facebook.Unity;
 
-public sealed class MyInteractiveConsole : InteractiveConsole {
+public sealed class MyInteractiveConsole : MonoBehaviour {
 
 	public static MyInteractiveConsole instance;
 	private static List<object>                 friends         = null;
@@ -12,13 +13,14 @@ public sealed class MyInteractiveConsole : InteractiveConsole {
 	public string FbUserName;
 	public delegate void FbLoggedIn();
 	public static event FbLoggedIn OnFbLogin;
-    
+
+
 	void Start() {
-		StartCoroutine(InitFacebook());
+//		StartCoroutine(InitFacebook());
 	}
 
-	override protected void Awake() {
-		base.Awake();
+	protected void Awake() {
+//		base.Awake();
 		instance = this;
     }
 
@@ -29,14 +31,25 @@ public sealed class MyInteractiveConsole : InteractiveConsole {
 	}
 	
 	public void Login() {
-		StartCoroutine(InitFacebook());
+	//	StartCoroutine(InitFacebook());
 	}
 	
+
 	public void Logout() {
-		if(IsLoggedIn())
-            CallFBLogout();
+	//	if(IsLoggedIn())
+      //      CallFBLogout();
     }
 
+    public IEnumerator InitFacebook() {
+        yield return 0;
+    }
+    public void GetFbFriend() {}
+    public void GetFbProfileInfo()
+    {}
+    public string[] GetAllFbFriendsIds(){return null;}
+    public ImageRequest[] GetAllFbFriends(){return null;}
+
+/*
     public IEnumerator InitFacebook() {
 		Debug.Log ("Facebook Init called");
 		if(!IsLoggedIn()) {
@@ -189,4 +202,5 @@ public sealed class MyInteractiveConsole : InteractiveConsole {
             callback: Callback
             );
     }
+    */
 }
