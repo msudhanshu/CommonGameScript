@@ -115,7 +115,12 @@ public class ScreenManager : Manager<ScreenManager> {
 			AddResourceImageURL(1);
 		}
 */
-		public void AddResourceImageURL(int albumNo=1) {
+
+	public void AddResourceImageURL() {
+			AddResourceImageURL (1);
+	}
+
+	public void AddResourceImageURL(int albumNo) {
 		string rootPath="Assets/Resources/";
 		string resRelativePath = "Album3D/"+albumNo+"/" ;
 		string filePath = rootPath+resRelativePath;
